@@ -1,7 +1,7 @@
 from typing import List, Tuple, Union, Dict, Any, Optional
-
 from collections import OrderedDict, defaultdict
 
+from os.path import join
 import json
 import toml
 
@@ -65,8 +65,8 @@ def export_compendium(session: Session) -> Any:
             
             output_string = json.dumps(content, indent=4)
             game_dir_base = config["frangiclave"]["GAME_DIRECTORY"]
-            game_dir_cont = "cultistsimulator_Data\\StreamingAssets\\content\\"
-            f = open(game_dir_base + game_dir_cont + file.group.value + "\\" + file.category.value + "\\" + file.name, "w")
+            game_dir_cont = join("cultistsimulator_Data", "StreamingAssets", "content")
+            f = open(join(game_dir_base, game_dir_cont, file.group.value, file.category.value, file.name), "w")
             f.write(output_string)
             f.close()
 
